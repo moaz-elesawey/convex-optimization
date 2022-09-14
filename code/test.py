@@ -1,49 +1,37 @@
-from math import exp, sin, cos, log
-from optm import Optimization
+from optm import methods
+
 
 def f(x):
     return x**4 - 14*x**3 + 60*x**2 - 70*x
 
-def f(x):
-    return 0.5 * x**2 - sin(x)
-
-## Golden Minima
-op = Optimization()
-op.Minimize(method="Golden", func=f, xmin=0, xmax=3, eps=0.0003, verbose=True)
-print(op.GetMinima())
-
-
 def df(x):
-    return 4*(x - 1)**3 * exp(x)
-
-def df(x):
-    return x - cos(x)
-
-## Bisection Minima
-op = Optimization()
-op.Minimize(method="Bisection", dfunc=df, xmin=0, xmax=3, num_iters=10, verbose=True)
-print(op.GetMinima())
-
+    return 4*x**3 - 14*3*x**2 + 120*x - 70
 
 def ddf(x):
-    return 12*(x-1)**2 * exp(x)
+    return 12*x**2 - 14*6*x + 120
 
-def ddf(x):
-    return 1 + sin(x)
 
-## Newton Minima
-op = Optimization()
-op.Minimize(method="Newton", dfunc=df, ddfunc=ddf, x0=0.5, eps=10**-5, verbose=True)
-print(op.GetMinima())
+# Golden
+op = methods.Golden(f)
+minima = op.Minimize(0, 2, 0.003)
+op.PrintOptimizationSteps()
+op.ExportOptimizationSteps(0, 3, "Golden_OptimizedFunction")
 
-def f(x):
-    return x**3 - 12.2*x**2 + 7.45*x + 42
+# BiSection
+op = methods.BiSection(f, df)
+minima = op.Minimize(0, 2, 10)
+op.PrintOptimizationSteps()
+op.ExportOptimizationSteps(0, 3, "BiSection_OptimizedFunction")
 
-def df(x):
-    return 3*x**2 - 24.4*x + 7.45
+# Newton
+op = methods.Newton(f, df, ddf)
+minima = op.Minimize(0, 0.0003)
+op.PrintOptimizationSteps()
+op.ExportOptimizationSteps(0, 3, "Newton_OptimizedFunction")
 
-## Secant Minima
-op = Optimization()
-op.Minimize(method="Secant", dfunc=df, x0=13, x1=12, eps=1, verbose=True)
-print(op.GetMinima())
+# Secant
+op = methods.Secant(f, df)
+minima = op.Minimize(0, 0.1, 0.0003)
+op.PrintOptimizationSteps()
+op.ExportOptimizationSteps(0, 3, "Secant_OptimizedFunction")
 
