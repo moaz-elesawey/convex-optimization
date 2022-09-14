@@ -7,6 +7,7 @@ Methods Discussed
 
 ## Golden Section Search Methods
 ```sh
+>>> from optm.methods import Golden
 >>> def f(x):
 ...     return x**4 - 14*x**3 + 60*x**2 - 70*x
 
@@ -36,6 +37,7 @@ Optimization Steps with [9] Steps
 
 ## BiSection Method
 ```sh
+>>> from optm.methods import BiSection
 >>> def f(x):
 ...     return x**4 - 14*x**3 + 60*x**2 - 70*x
 
@@ -68,6 +70,7 @@ Found Local Minima at x -> [0.779297]
 
 ## Newton Method
 ```sh
+>>> from optm.methods import Newton
 >>> def f(x):
 ...     return x**4 - 14*x**3 + 60*x**2 - 70*x
 
@@ -98,6 +101,7 @@ Found Local Minima at x -> [0.780884]
 
 ## Secant Method
 ```sh
+>>> from optm.methods import Secant
 >>> def f(x):
 ...     return x**4 - 14*x**3 + 60*x**2 - 70*x
 
