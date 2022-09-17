@@ -115,7 +115,7 @@ float NewtonMinimize(float (*f)(float), float (*df)(float), float (*ddf)(float),
     while (1) {
         xk = x0 - ( df(x0) / ddf(x0) );
 
-        if(xk - x0 < eps)
+        if(abs(xk - x0) < eps)
             break;
 
         x0 = xk;
@@ -157,7 +157,7 @@ float SecantMinimize(float (*f)(float), float (*df)(float), float x0, float x1, 
     while (1) {
         xk = ( df(x1)*x0 - df(x0)*x1 ) / (df(x1) - df(x0));
 
-        if(xk - x1 < eps)
+        if(abs(xk - x1) < eps)
             break;
 
         x0 = x1;
