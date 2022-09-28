@@ -9,10 +9,10 @@ int main(int argc, char **argv) {
 
     float min;
 
-    min = Method::Golden(f, -2.0, 2.0, 0.0001);
+    min = Method::Golden(f, -2.0, 2.0, 0.00001);
     std::cout << "Golden Method Minima = " << min << std::endl;
 
-    min = Method::BiSection(f, df, -2.0, 2.0, 20);
+    min = Method::BiSection(f, df, -2.0, 2.0, 30);
     std::cout << "BiSection Method Minima = " << min << std::endl;
 
     min = Method::Newton(f, df, ddf, -2, 0.0001);
@@ -23,3 +23,4 @@ int main(int argc, char **argv) {
 
     return 0;
 }
+

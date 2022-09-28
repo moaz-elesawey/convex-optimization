@@ -86,7 +86,7 @@ float Method::Newton(float (f) (float), float (df) (float), float (ddf) (float),
 
     while (true) {
         xk = x0 - (df(x0)/ddf(x0));
-        if((xk - x0) < eps) break;
+        if(abs(xk - x0) < eps) break;
         x0 = xk;
     }
 
@@ -113,7 +113,7 @@ float Method::Secant(float (f) (float), float (df) (float), float x0, float x1, 
 
     while(true) {
         xk = (df(x1)*x0 - df(x0)*x1) / (df(x1) - df(x0));
-        if((xk - x1 < eps)) break;
+        if(abs(xk - x1) < eps) break;
         x0 = x1;
         x1 = xk;
     }
